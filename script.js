@@ -86,6 +86,9 @@ function startGame() {
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
       resultElement.style.display = 'block';
+      setTimeout(() => {
+        location.reload(); // Forces the page to reload after showing the message
+      }, 2000); // Wait for 2 seconds before reloading
     }
   }, 1000);
 }
