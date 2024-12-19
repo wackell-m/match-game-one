@@ -16,9 +16,24 @@ let timeLeft = 60;
 function createCard(imageSrc) {
     const card = document.createElement("div");
     card.classList.add("card");
+
+    const cardInner = document.createElement("div");
+    cardInner.classList.add("card-inner");
+
+    const cardFront = document.createElement("div");
+    cardFront.classList.add("card-front");
+    cardFront.textContent = "Click";
+
+    const cardBack = document.createElement("div");
+    cardBack.classList.add("card-back");
+
     const img = document.createElement("img");
     img.src = imageSrc;
-    card.appendChild(img);
+    cardBack.appendChild(img);
+
+    cardInner.appendChild(cardFront);
+    cardInner.appendChild(cardBack);
+    card.appendChild(cardInner);
 
     card.addEventListener("click", () => {
         if (card.classList.contains("flipped") || secondCard) return;
@@ -34,6 +49,7 @@ function createCard(imageSrc) {
 
     return card;
 }
+
 
 function checkMatch() {
     const img1 = firstCard.querySelector("img").src;
