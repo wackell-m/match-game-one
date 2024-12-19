@@ -5,7 +5,7 @@ let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
 let matches = 0;
-let timeLeft = 60;
+let timeLeft = 90;
 
 const images = [
   'img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg', 'img6.jpg',
@@ -60,7 +60,7 @@ function checkForMatch() {
     matches++;
     resetBoard();
     if (matches === images.length) {
-      setTimeout(() => alert('You won!'), 500);
+      setTimeout(() => alert('You won! Now go find the Swedish Chef. I hear he was looking for lobsters...'), 500);
     }
   } else {
     lockBoard = true;
