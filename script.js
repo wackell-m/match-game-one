@@ -11,7 +11,7 @@ const grid = document.getElementById("grid");
 const timeDisplay = document.getElementById("time");
 const retryButton = document.getElementById("retry");
 let timer = null;
-let timeLeft = 60;
+let timeLeft = 90;
 
 function createCard(imageSrc) {
     const card = document.createElement("div");
@@ -95,7 +95,7 @@ function endGame(win) {
 function resetGame() {
     shuffledImages = [...images, ...images].sort(() => 0.5 - Math.random());
     matches = 0;
-    timeLeft = 60;
+    timeLeft = 90;
     timeDisplay.textContent = timeLeft;
     retryButton.classList.add("hidden");
     grid.classList.remove("hidden");
