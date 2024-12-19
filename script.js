@@ -8,8 +8,8 @@ let firstCard = null;
 let secondCard = null;
 let matches = 0;
 const grid = document.getElementById("grid");
-const timeDisplay = document.getElementById("time");
-const retryButton = document.getElementById("retry");
+const timerDisplay = document.getElementById("time");
+const restartButton = document.getElementById("restart");
 let timer = null;
 let timeLeft = 90;
 
@@ -50,10 +50,9 @@ function createCard(imageSrc) {
     return card;
 }
 
-
 function checkMatch() {
-    const img1 = firstCard.querySelector("img").src;
-    const img2 = secondCard.querySelector("img").src;
+    const img1 = firstCard.querySelector(".card-back img").src;
+    const img2 = secondCard.querySelector(".card-back img").src;
 
     if (img1 === img2) {
         matches++;
@@ -76,35 +75,33 @@ function resetSelection() {
 function startTimer() {
     timer = setInterval(() => {
         timeLeft--;
-        timeDisplay.textContent = timeLeft;
+        timerDisplay.textContent = timeLeft;
         if (timeLeft <= 0) endGame(false);
     }, 1000);
 }
 
 function endGame(win) {
     clearInterval(timer);
-    retryButton.classList.remove("hidden");
-    grid.classList.add("hidden");
     if (win) {
         alert("You win! Find the Swedish Chef for the next step. I hear he was looking for lobsters...");
     } else {
         alert("Time's up! Try again!");
     }
+    restartButton.style.display = "block";
 }
 
 function resetGame() {
     shuffledImages = [...images, ...images].sort(() => 0.5 - Math.random());
     matches = 0;
     timeLeft = 90;
-    timeDisplay.textContent = timeLeft;
-    retryButton.classList.add("hidden");
-    grid.classList.remove("hidden");
+    timerDisplay.textContent = timeLeft;
+    restartButton.style.display = "none";
     grid.innerHTML = "";
     shuffledImages.forEach(imgSrc => grid.appendChild(createCard(imgSrc)));
     startTimer();
 }
 
-retryButton.addEventListener("click", resetGame);
+restartButton.addEventListener("click", resetGame);
 
 // Initialize the game
 shuffledImages.forEach(imgSrc => grid.appendChild(createCard(imgSrc)));
